@@ -17,6 +17,14 @@ module Hodor
       Project.instance()
     end
 
+    def lookup_tier(tier, key)
+      case tier
+      when :local_file; @local_file.lookup(key)
+      when :cloud_file; @cloud_file.lookup(key)
+      when :cloud_database;  @cloud_db.lookup(key)
+      end
+    end
+
     def lookup(key)
       @local_file.lookup(key) || @cloud_db.lookup(key) || @cloud_file.lookup(key)
     end

@@ -75,14 +75,21 @@ module Hodor
       end
     end
 
+
+    def lookup_tier(tier, key)
+      region.lookup_tier(tier, key) ||
+        user.lookup_tier(tier, key) ||
+        stage.lookup_tier(tier, key) ||
+        this.variables.lookup_tier(tier, key) ||
+        project.lookup_tier(tier, key) ||
+        team.lookup_tier(tier, key) ||
+        company.lookup_tier(tier, key)
+    end
+
     def lookup(key)
-      region.lookup(key) ||
-        user.lookup(key) ||
-        stage.lookup(key) ||
-        this.variables.lookup(key) ||
-        project.lookup(key) ||
-        team.lookup(key) ||
-        company.lookup(key)
+      lookup_tier(:local_file, key) ||
+        lookup_tier(:cloud_database, key) ||
+        lookup_tier(:cloud_file, key)
     end
 
     def save()
