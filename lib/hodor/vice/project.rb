@@ -1,6 +1,9 @@
-require "key_space"
+#require "key_space"
+require 'singleton'
+require_relative 'key_space'
+require_relative 'workspace'
 
-module Hodor
+module Hodor::Vice
   class Project
     include Singleton
 
@@ -9,16 +12,22 @@ module Hodor
     attr_reader :active_workspace
 
     def initialize()
-      @active_workspace = Workspace.new("the default")
     end
 
-    def init(name)
+    def create(name)
+      @active_workspace = Workspace.new({
+        name: "default" 
+      })
       @name = name
       @variables = KeySpace.new(project: name)
     end
 
     def company
       Company.instance()
+    end
+
+    def team
+      Team.instance()
     end
 
     def workspace_by_name(name)
@@ -33,8 +42,7 @@ module Hodor
     end
 
     def resolve(endpoint, kvp)
-      @variables[:location][kvp.keys.first][endpoint]
+      #@variables[:location][kvp.keys.first][endpoint]
     end
-
   end
 end

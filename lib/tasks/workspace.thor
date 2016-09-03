@@ -17,6 +17,7 @@ class Vice::Workspace < ::Hodor::Command
 
     desc "show", "Show details about the active workspace"
     def show
+      project.create("hello")
       say "Active Workspace: #{workspace.name}"
     end
 

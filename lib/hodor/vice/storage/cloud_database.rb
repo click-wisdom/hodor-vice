@@ -1,17 +1,18 @@
 
 # Wrapper around DynamoDb, or Azure's and Google's equivalent
 #
-module Hodor
+module Hodor::Vice
   class CloudDatabase
 
     def initialize(keyid)
-      @table = project.resolve(:table, keyval)
+      @table = project.resolve(:table, keyid)
     end
 
     def project
       Project.instance()
     end
 
+=begin
     def lookup(key)
       nil
     end
@@ -25,5 +26,6 @@ module Hodor
         @table = project.resolve(store_type)
       end
     end
+=end
   end
 end

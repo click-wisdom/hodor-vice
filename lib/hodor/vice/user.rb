@@ -1,8 +1,9 @@
-require "key_space"
+require_relative "key_space"
+require_relative "profile"
 
-module Hodor
+module Hodor::Vice
   class User
-    attr_reader name, variables, profile
+    attr_reader :name, :variables, :profile
 
     def initialize name
       @name = name

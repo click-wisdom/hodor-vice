@@ -1,9 +1,12 @@
-require "key_space"
+require_relative "key_space"
+require 'singleton'
 
-module Hodor
+module Hodor::Vice
   class Team
-    attr_reader name, variables
-    attr_reader members
+    include Singleton
+
+    attr_reader :name, :variables
+    attr_reader :members
 
     def initialize(name)
       @name = name
@@ -11,7 +14,7 @@ module Hodor
     end
 
     def add user
-      members << user
+      (members ||= []) << user
     end
   end
 end

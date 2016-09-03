@@ -1,11 +1,12 @@
-require "key_space"
+require_relative "key_space"
+require 'singleton'
 
-module Hodor
+module Hodor::Vice
   class Company
     include Singleton
 
-    attr_reader name
-    attr_reader variables  # KeySpace
+    attr_reader :name
+    attr_reader :variables  # KeySpace
 
     def initialize(name)
       @name = name

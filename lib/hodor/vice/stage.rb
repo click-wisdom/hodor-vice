@@ -1,10 +1,10 @@
-require "key_space"
+require_relative "key_space"
 
-module Hodor
+module Hodor::Vice
   class Stage
-    attr_reader name, variables
+    attr_reader :name, :variables
 
-    def initialize
+    def initialize(name)
       @name = name
       @variables = KeySpace.new(stage: name)
     end

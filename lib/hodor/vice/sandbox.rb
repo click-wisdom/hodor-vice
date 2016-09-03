@@ -1,6 +1,4 @@
-require "key_space"
-
-module Hodor
+module Hodor::Vice
   class Sandbox
 
     class << self

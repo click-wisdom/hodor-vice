@@ -1,13 +1,10 @@
-module Hodor
-  module Cli
-
+module Vice
     class Project < ::Hodor::Command
 
-      desc "list", "Displays a list of available workspaces"
-      def list
-        say "no workspaces defined"
+      desc "create", "Create a new Project"
+      def create
+        say "Create new project"
       end
 
     end
-  end
 end

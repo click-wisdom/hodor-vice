@@ -2,19 +2,15 @@ require_relative 'storage/cloud_database'
 require_relative 'storage/cloud_file'
 require_relative 'storage/local_file'
 
-module Hodor
+module Hodor::Vice
   class KeySpace
 
     # Knows how to load its own values in priority order
 
     def initialize(keyval)
-      @cloud_db = CloudDatabase.new(project.resolve(keyval))
-      @cloud_file = CloudFile.new(project.resolve(keyval))
-      @local_file = LocalFile.new(project.resolve(keyval))
-    end
-
-    def project
-      Project.instance()
+      @cloud_db = CloudDatabase.new(keyval)
+      @cloud_file = CloudFile.new(keyval)
+      @local_file = LocalFile.new(keyval)
     end
 
     def lookup_tier(tier, key)

@@ -1,12 +1,14 @@
-
-require "key_space"
+require_relative "key_space"
+require_relative "stage"
+require_relative "region"
+require_relative "user"
 
 # Workspace isn't only a localhost entity. A workspace class could exist at runtime on
 # AWS allowing a running lambda to load values from the active workspace as well.
 #
 # Also, there is exactly one "admin" workspace, that could be password protected
 #
-module Hodor
+module Hodor::Vice
   class Workspace
 
     # Variables for this workspace
@@ -58,6 +60,10 @@ module Hodor
       project.company
     end
 
+    def team
+      project.team
+    end
+
     class << self
       def project
         Project.instance()
@@ -65,7 +71,9 @@ module Hodor
 
       def create()
         # create new workspace
-        workspace = Workspace.new()
+        workspace = Workspace.new( {
+         name: 'default'
+        })
         project.add_workspace(workspace)
       end
 
@@ -74,7 +82,6 @@ module Hodor
         project.activate_workspace(workspace)
       end
     end
-
 
     def lookup_tier(tier, key)
       region.lookup_tier(tier, key) ||
@@ -93,7 +100,7 @@ module Hodor
     end
 
     def save()
-      CloudDatabase.store(workspace: @name, this.to_json())
+      CloudDatabase.store( {workspace: @name}, this.to_json())
     end
 
     def diff()
@@ -125,4 +132,5 @@ module Hodor
     def to_json()
     end
 
+  end
 end

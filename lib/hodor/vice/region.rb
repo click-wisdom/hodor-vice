@@ -1,11 +1,10 @@
+require_relative "key_space"
 
-require "key_space"
-
-module Hodor
+module Hodor::Vice
   class Region
-    attr_reader name
+    attr_reader :name
 
-    def initialize
+    def initialize(name)
       @name = name
       @variables = KeySpace.new(region: name)
     end

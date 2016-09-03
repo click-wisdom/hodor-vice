@@ -1,8 +1,8 @@
-module Hodor
+module Hodor::Vice
   class CloudFile
 
     def initialize(keyid)
-      @path = project.resolve(:remote_path, keyval)
+      @path = project.resolve(:remote_path, keyid)
     end
 
     def project
