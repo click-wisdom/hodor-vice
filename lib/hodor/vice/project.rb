@@ -4,11 +4,15 @@ module Hodor
   class Project
     include Singleton
 
-    attr_reader name
-    attr_reader variables
-    attr_reader active_workspace
+    attr_reader :name
+    attr_reader :variables
+    attr_reader :active_workspace
 
-    def initialize(name)
+    def initialize()
+      @active_workspace = Workspace.new("the default")
+    end
+
+    def init(name)
       @name = name
       @variables = KeySpace.new(project: name)
     end

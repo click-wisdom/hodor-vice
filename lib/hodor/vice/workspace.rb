@@ -8,17 +8,17 @@ require "key_space"
 #
 module Hodor
   class Workspace
-    include Singleton
 
     # Variables for this workspace
-    attr_reader variables
-    attr_reader constraints  # limits that sub/user workspaces cannot exceed
-    attr_reader stage
-    attr_reader current_user  # user running current command
-    attr_reader members # array of users that can access this workspace. Restricted workspaces 
-    attr_reader region
-    attr_reader sandbox  # set of permissions that define the boundaries of this workspace
-    attr_reader state  # can be deployed, undeployed, hibernating, or stubbed (fake endpoints)
+    attr_reader :name
+    attr_reader :variables
+    attr_reader :constraints  # limits that sub/user workspaces cannot exceed
+    attr_reader :stage
+    attr_reader :current_user  # user running current command
+    attr_reader :members # array of users that can access this workspace. Restricted workspaces 
+    attr_reader :region
+    attr_reader :sandbox  # set of permissions that define the boundaries of this workspace
+    attr_reader :state  # can be deployed, undeployed, hibernating, or stubbed (fake endpoints)
 
     # restricted workspaces (i.e. production) are more conservative with permissions
     def restricted?
